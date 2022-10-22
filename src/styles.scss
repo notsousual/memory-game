@@ -1,0 +1,143 @@
+$font-stack: "Roboto Slab", Helvetica, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+  "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+$background-color: rgb(19, 19, 19);
+$white-color: rgb(255, 255, 255);
+
+$border-radius: 7px;
+
+@font-face {
+  font-family: "Roboto Slab";
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: url("Roboto_Slab/static/RobotoSlab-Light.ttf");
+}
+
+@font-face {
+  font-family: "Roboto Slab";
+  font-style: normal;
+  font-display: swap;
+  src: url("Roboto_Slab/static/RobotoSlab-Bold.ttf");
+  font-weight: bold;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  background: $background-color;
+  color: $white-color;
+  font: 100% $font-stack;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  border: none;
+
+  font: 100% $font-stack;
+  font-size: 1.17em;
+  font-weight: normal;
+  background-color: #a5a5a5;
+
+  border-radius: $border-radius;
+  margin-left: 15px;
+  margin-top: 7.5px;
+  margin-bottom: 7.5px;
+  padding: 10px;
+
+  &:hover {
+    background-color: #bebebe;
+    transition: 0.3s;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+h1 {
+  font-size: 70px;
+  line-height: 1;
+}
+
+.tiles {
+  max-width: 700px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+  grid-gap: 10px;
+  margin-bottom: 30px;
+
+  @for $i from 1 through 16 {
+    div {
+      background-color: rgb(203 114 163);
+      background: linear-gradient(43deg, #2c51cd 0%, #c35ebc 46%, #ffe223 100%);
+      background-attachment: fixed;
+      opacity: 0;
+
+      aspect-ratio: 1/ 1;
+
+      width: 100%;
+      border-radius: $border-radius;
+
+      h3 {
+        font-weight: lighter;
+      }
+
+      &:nth-child(#{$i}) {
+        // Delaying the animation.
+        animation: fade 1s linear forwards;
+        animation-delay: 0.2s + $i * (1s / 16);
+      }
+    }
+  }
+}
+
+.options {
+  box-sizing: border-box;
+  background-color: #1b1b1b;
+  border-radius: $border-radius;
+  padding: 7.5px 15px;
+
+  animation: fade 1s linear forwards;
+
+  @for $i from 1 through 16 {
+    * {
+      opacity: 0;
+
+      &:nth-child(#{$i}) {
+        animation: fade 1s linear forwards;
+        animation-delay: 0.2s + $i * (1s / 16);
+      }
+    }
+  }
+
+  h3 {
+    padding: 0em;
+    margin: 0;
+    font-weight: lighter;
+  }
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

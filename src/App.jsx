@@ -36,7 +36,7 @@ export const App = () => {
           }))
         );
 
-        if (guessed.size == cards.length) setWin(true);
+        if (guessed.size === cards.length) setWin(true);
 
         setFirst(undefined);
         setSecond(undefined);

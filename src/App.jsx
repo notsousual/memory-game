@@ -5,7 +5,6 @@ import { StateButton } from "./components/StateButton";
 import { shuffleArray } from "./helpers/shuffleArray";
 
 export const App = () => {
-  const [loading, setLoading] = useState(true);
   const [cards, setCards] = useState(shuffleArray(sourceImages));
   const [guessed, setGuessed] = useState(new Set());
   const [first, setFirst] = useState();
@@ -19,19 +18,6 @@ export const App = () => {
 
   const [win, setWin] = useState(false);
 
-  const cacheImages = async (srcArray) => {
-    const promises = await srcArray.map((src) => {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.src = src.url;
-        img.onload = resolve();
-        img.onerror = reject();
-      });
-    });
-    await Promise.all(promises);
-    setLoading(false);
-  };
-
   const handleClick = (id) => {
     if (!blocked) {
       setCards([
@@ -43,10 +29,6 @@ export const App = () => {
       first !== undefined ? setSecond(id) : setFirst(id);
     }
   };
-
-  useEffect(() => {
-    cacheImages(sourceImages);
-  }, []);
 
   useEffect(() => {
     const handleUpdate = () => {
@@ -96,82 +78,77 @@ export const App = () => {
           </button>
         )}
       </div>
-      {loading ? (
-        <></>
-      ) : (
-        <>
-          <div className="tiles">
-            {cards.map((x, id) => (
-              <Card
-                key={id}
-                cardId={id}
-                url={x.url}
-                isActive={x.isActive}
-                onClick={() => {
-                  handleClick(id);
-                }}
-                numbered={numbered}
-              />
-            ))}
+
+      <div className="tiles">
+        {cards.map((x, id) => (
+          <Card
+            key={id}
+            cardId={id}
+            url={x.url}
+            isActive={x.isActive}
+            onClick={() => {
+              handleClick(id);
+            }}
+            numbered={numbered}
+          />
+        ))}
+      </div>
+
+      <div className="options">
+        <div>
+          <h3>Numbered cards:</h3>
+          <div>
+            <StateButton
+              onClick={() => {
+                setNumbered(true);
+              }}
+              state={numbered}
+              targetValue={true}
+              title={"ON"}
+            />
+            <StateButton
+              onClick={() => {
+                setNumbered(false);
+              }}
+              state={numbered}
+              targetValue={false}
+              title={"OFF"}
+            />
           </div>
+        </div>
 
-          <div className="options">
-            <div>
-              <h3>Numbered cards:</h3>
-              <div>
-                <StateButton
-                  onClick={() => {
-                    setNumbered(true);
-                  }}
-                  state={numbered}
-                  targetValue={true}
-                  title={"ON"}
-                />
-                <StateButton
-                  onClick={() => {
-                    setNumbered(false);
-                  }}
-                  state={numbered}
-                  targetValue={false}
-                  title={"OFF"}
-                />
-              </div>
-            </div>
+        <div>
+          <h3>Speed:</h3>
+          <div>
+            <StateButton
+              onClick={() => {
+                setSpeed(800);
+              }}
+              state={speed}
+              targetValue={800}
+              title={"FAST"}
+            />
 
-            <div>
-              <h3>Speed:</h3>
-              <div>
-                <StateButton
-                  onClick={() => {
-                    setSpeed(800);
-                  }}
-                  state={speed}
-                  targetValue={800}
-                  title={"FAST"}
-                />
+            <StateButton
+              onClick={() => {
+                setSpeed(1800);
+              }}
+              state={speed}
+              targetValue={1800}
+              title={"NORMAL"}
+            />
 
-                <StateButton
-                  onClick={() => {
-                    setSpeed(1800);
-                  }}
-                  state={speed}
-                  targetValue={1800}
-                  title={"NORMAL"}
-                />
-
-                <StateButton
-                  onClick={() => {
-                    setSpeed(2500);
-                  }}
-                  state={speed}
-                  targetValue={2500}
-                  title={"SLOW"}
-                />
-              </div>
-            </div>
+            <StateButton
+              onClick={() => {
+                setSpeed(2500);
+              }}
+              state={speed}
+              targetValue={2500}
+              title={"SLOW"}
+            />
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 };

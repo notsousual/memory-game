@@ -37,13 +37,11 @@ body {
 
 button {
   border: none;
-
+  border-radius: $border-radius;
   font: 100% $font-stack;
   font-size: 1.17em;
   font-weight: normal;
   background-color: #a5a5a5;
-
-  border-radius: $border-radius;
   margin-left: 15px;
   margin-top: 7.5px;
   margin-bottom: 7.5px;
@@ -63,7 +61,6 @@ code {
 h1 {
   font-size: 70px;
   line-height: 1;
-  margin: 15px 0;
 }
 
 .tiles {

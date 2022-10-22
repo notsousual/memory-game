@@ -4,16 +4,25 @@ export const Card = ({ cardId, url, isActive, onClick, numbered }) => {
       onClick={onClick}
       style={{
         backgroundColor: "rgb(203 114 163)",
-        backgroundImage: isActive ? `url(${url})` : undefined,
         backgroundSize: "cover",
-        backgroundAttachment: isActive ? "scroll" : "fixed",
+        backgroundAttachment: "fixed",
+        overflow: "hidden",
 
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      {numbered && <h2>{cardId + 1}</h2>}
+      {numbered && !isActive && (
+        <h2 style={{ position: "relative", left: "50%" }}>{cardId + 1}</h2>
+      )}
+      <img
+        style={{
+          maxWidth: "100%",
+          visibility: isActive ? "initial" : "hidden",
+        }}
+        src={url}
+      ></img>
     </div>
   );
 };

@@ -62,7 +62,11 @@ export const App = () => {
   }, [first, second]);
 
   return (
-    <div style={{ maxWidth: "700px", margin: "0 20px" }}>
+    <div
+      style={{
+        margin: "0 20px",
+      }}
+    >
       <h1>Memory game</h1>
 
       <div style={{ display: "flex", justifyContent: "space-between" }}>

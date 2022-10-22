@@ -64,10 +64,11 @@ code {
 h1 {
   font-size: 70px;
   line-height: 1;
+  margin: 15px 0;
 }
 
 .tiles {
-  max-width: 700px;
+  max-width: 600px;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);

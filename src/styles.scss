@@ -1,10 +1,3 @@
-$font-stack: "Roboto Slab", Helvetica, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-  "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-$background-color: rgb(19, 19, 19);
-$white-color: rgb(255, 255, 255);
-
-$border-radius: 7px;
-
 @font-face {
   font-family: "Roboto Slab";
   font-weight: normal;
@@ -20,6 +13,12 @@ $border-radius: 7px;
   src: url("Roboto_Slab/static/RobotoSlab-Bold.ttf");
   font-weight: bold;
 }
+
+$font-stack: "Roboto Slab";
+$background-color: rgb(19, 19, 19);
+$white-color: rgb(255, 255, 255);
+
+$border-radius: 7px;
 
 body {
   height: 100vh;
@@ -106,6 +105,7 @@ h1 {
   box-sizing: border-box;
   background-color: #1b1b1b;
   border-radius: $border-radius;
+  margin-bottom: 30px;
   padding: 7.5px 15px;
 
   animation: fade 1s linear forwards;

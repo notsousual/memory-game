@@ -2,7 +2,7 @@
 https://memory-game-azusual.netlify.app/
 
 React, Javascript, SASS/SCSS are used. The design & markup are adaptive. 
-Game speed is adjustable; Tiles can be numbered.
+Game speed is adjustable; Numeration and move counter are available.
 
 Enjoy!
 ______________________________________________________________

@@ -18,7 +18,7 @@ export const App = () => {
 
   const [win, setWin] = useState(false);
 
-  useEffect(() => {
+  const handleUpdate = () => {
     if (second !== undefined) {
       setBlocked(true);
       setMoves(moves + 1);
@@ -43,6 +43,10 @@ export const App = () => {
         setBlocked(false);
       }, speed);
     }
+  };
+
+  useEffect(() => {
+    handleUpdate();
   }, [first, second]);
 
   const handleClick = (id) => {

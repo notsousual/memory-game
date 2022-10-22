@@ -18,37 +18,6 @@ export const App = () => {
 
   const [win, setWin] = useState(false);
 
-  const handleUpdate = () => {
-    if (second !== undefined) {
-      setBlocked(true);
-      setMoves(moves + 1);
-
-      setTimeout(() => {
-        if (cards[first].url === cards[second].url) {
-          setGuessed(guessed.add(first));
-          setGuessed(guessed.add(second));
-        }
-
-        setCards(
-          cards.map((x, key) => ({
-            url: x.url,
-            isActive: guessed.has(key) ? true : false,
-          }))
-        );
-
-        if (guessed.size === cards.length) setWin(true);
-
-        setFirst(undefined);
-        setSecond(undefined);
-        setBlocked(false);
-      }, speed);
-    }
-  };
-
-  useEffect(() => {
-    handleUpdate();
-  }, [first, second]);
-
   const handleClick = (id) => {
     if (!blocked) {
       setCards([
@@ -60,6 +29,37 @@ export const App = () => {
       first !== undefined ? setSecond(id) : setFirst(id);
     }
   };
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      if (second !== undefined) {
+        setBlocked(true);
+        setMoves(moves + 1);
+
+        setTimeout(() => {
+          if (cards[first].url === cards[second].url) {
+            setGuessed(guessed.add(first));
+            setGuessed(guessed.add(second));
+          }
+
+          setCards(
+            cards.map((x, key) => ({
+              url: x.url,
+              isActive: guessed.has(key) ? true : false,
+            }))
+          );
+
+          if (guessed.size === cards.length) setWin(true);
+
+          setFirst(undefined);
+          setSecond(undefined);
+          setBlocked(false);
+        }, speed);
+      }
+    };
+
+    handleUpdate();
+  }, [first, second]);
 
   return (
     <div style={{ maxWidth: "700px", margin: "0 20px" }}>

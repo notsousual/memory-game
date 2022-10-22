@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# [DEMO](https://memory-game-azusual.netlify.app/)
+https://memory-game-azusual.netlify.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React, Javascript, SASS/SCSS are used. The design & markup are adaptive. 
+Game speed is adjustable; Tiles can be numbered.
+
+Enjoy!
+______________________________________________________________
 
 ## Available Scripts
 
